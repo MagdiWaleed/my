@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Answers extends StatelessWidget {
-  final Function sellect;
+void Function() newFun = () {};
 
-  Answers(this.sellect);
+class Answers extends StatelessWidget {
+  final VoidCallback sellect;
+  final List<String> answers;
+
+  Answers(this.sellect, this.answers);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: RaisedButton(
-          color: Colors.blue,
-          textColor: Colors.white,
-          child: Text('Answer 1'),
-          onPressed: () {
-            sellect();
-          }),
+    return Column(
+      children: [
+        for (var answer in answers)
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              child: Text('$answer'),
+              onPressed: sellect,
+            ),
+          ),
+      ],
     );
   }
 }
